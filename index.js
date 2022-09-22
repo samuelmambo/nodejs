@@ -2,6 +2,16 @@ const Joi = require('joi');
 const express = require('express');
 const Authenticating = require('./logger');
 const app = express();
+const mysql = require('mysql');
+const bodyparser = require('body-parser')
+app.use(bodyparser.json());
+
+var connection = mysql.createConnection({
+    host:'localhost',
+    user:'root',
+    password:'',
+    database:'mambo',
+});
 
 const logger = require('./logger');
 const coursesRouter = require('./routers/routers')
@@ -17,5 +27,5 @@ app.use(express.urlencoded({ extended: true }))
 
 
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3009
 app.listen(port, () => console.log(`Listening on port ${port}....`));

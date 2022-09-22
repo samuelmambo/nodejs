@@ -9,8 +9,12 @@ const courses = [
 
 
 class Courses {
+    
     static findAllCourses(req, res) {
-        res.send(courses);
+        const query = connection.query('SELECT *FROM courses',function(error,rows,fiels){
+            res.send(courses);
+        });
+        
     }
 
 
